@@ -10,16 +10,25 @@ const Collection = () => {
   const { products } = useContext(Shopcontext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts,setFilterProducts] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+
+  const toggleCategory = () =>{
+    if (category.includes(e.target.value)){
+      setCategory(prev=> prev.filter(item => item !== e.target.value))
+    }
+  }
 
   useEffect(()=>{
     setFilterProducts(products)
-  },[])
+  },[products])
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t">
       {/* filter section */}
       <div className="min-w-60">
-        <p onClick= {()=>setShowFilter(!showFilter)}className="my-2 text-xl flex items-center cursor-pointer gap-2" onClick={() => setShowFilter(!showFilter)}>
+        <p onClick= {()=>setShowFilter(!showFilter)}
+        className="my-2 text-xl flex items-center cursor-pointer gap-2">
           FILTERS
           <img className={`h-3 sm:hidden ${showFilter ? 'rotate-90':''}`} src={assets.dropdown_icon} alt="" />
         </p>
@@ -68,9 +77,9 @@ const Collection = () => {
         {/*Map Products */}
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
           {
-            filterProducts.map((item,index)=>{
-              <ProductItem key ={index} name={}/>
-            })
+           filterProducts.map((item, index) => (
+  <ProductItem key={index} name={item.name} id={item._id} price={item.price} image={item.image} />
+))
           }
         </div>
 
