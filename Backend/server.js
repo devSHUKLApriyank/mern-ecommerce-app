@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/mongodb.js";
 import connectCloudinary from "./config/cloudinary.js";
+import userRouter from "./routes/UserRoute.js";
 
 dotenv.config();
 
@@ -20,7 +21,7 @@ app.use(cors());
 
 
 //api endpoints
-app.use("/api/user", require("./routes/UserRoute.js").default);
+app.use("/api/user", userRouter);
 app.get('/',(req,res)=>{
     res.send("API Working")
 })
