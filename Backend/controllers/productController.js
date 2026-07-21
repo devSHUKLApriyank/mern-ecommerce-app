@@ -85,6 +85,19 @@ const removeProduct = async (req, res) => {
 //function for single product info
 const singleProduct = async (req, res) => {
 
+    try{
+       const {productId} = req.body
+       const product = await productModel.findById(productId)
+
+        if (!product) {
+            return res.status(404).json({ success: false, message: "Product not found" })
+        }
+
+       res.json({ success: true, product })
+    } catch (error) {
+        console.log("SINGLE PRODUCT ERROR:", error)
+        res.json({ success: false, message: error.message })
+    }
 
 }
 
