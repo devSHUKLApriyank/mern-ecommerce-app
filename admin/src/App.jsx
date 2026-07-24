@@ -7,9 +7,13 @@ import List from './pages/List'
 import Order from './pages/Order'
 import Login from './component/Login'
 
+export const backendUrl = import.meta.env.VITE_BACKEND_URL
+
 const App = () => {
 
   const [token, setToken] = useState('');
+
+
 
   return (
     <div className='bg-gray-50 min-h-screen'>
