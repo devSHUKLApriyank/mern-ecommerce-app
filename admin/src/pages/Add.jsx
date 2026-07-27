@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import assets from '../assets/assets'
 
 const Add = () => {
+
+  const [image1,setImage1] = useState(false)
+  const [image2,setImage2] = useState(false)
+  const [image3,setImage3] = useState(false)
+  const [image4,setImage4] = useState(false)
+
   return (
     <form className='flex flex-col w-full items-start gap-3'>
       <div>
@@ -63,28 +69,35 @@ const Add = () => {
       </div>
 
       <div>
-        <p>Product Sizes</p>
+        <p className='mb-2'>Product Sizes</p>
         <div className='flex gap-3'>
-          <p className='bg-slate-200 px-3 py-1 cursor-pointer'>S</p>
-        </div>
+          <div>
+            <p className='bg-slate-200 px-3 py-1 cursor-pointer'>S</p>
+          </div>
 
-        <div>
-          <p className='bg-slate-200 px-3 py-1 cursor-pointer'>M</p>
-        </div>
+          <div>
+            <p className='bg-slate-200 px-3 py-1 cursor-pointer'>M</p>
+          </div>
 
-        <div>
-          <p className='bg-slate-200 px-3 py-1 cursor-pointer'>L</p>
-        </div>
+          <div>
+            <p className='bg-slate-200 px-3 py-1 cursor-pointer'>L</p>
+          </div>
 
-        <div>
-          <p className='bg-slate-200 px-3 py-1 cursor-pointer'>XL</p>
-        </div>
+          <div>
+            <p className='bg-slate-200 px-3 py-1 cursor-pointer'>XL</p>
+          </div>
 
-        <div>
-          <p className='bg-slate-200 px-3 py-1 cursor-pointer'>XXL</p>
+          <div>
+            <p className='bg-slate-200 px-3 py-1 cursor-pointer'>XXL</p>
+          </div>
         </div>
-
       </div>
+      <div className='flex gap-2 mt-2'>
+        <input type='checkbox' id='bestseller' />
+        <label className='cursor-pointer' htmlFor='bestseller '>Add to bestseller</label>
+      </div>
+
+      <button type='submit' className='w-28 py-3 mt-4 bg-black text-white'>ADD</button>
     </form>
   )
 }
