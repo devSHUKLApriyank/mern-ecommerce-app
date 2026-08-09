@@ -14,6 +14,7 @@ const ShopcontextProvider = (props) => {
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({})
     const [products, setProducts] = useState([])
+    const [token, setToken] = useState("")
     const navigate = useNavigate()
 
     const addToCart = async (itemId, size) => {
@@ -87,12 +88,18 @@ const ShopcontextProvider = (props) => {
         try {
             const response = await axios.get(backendUrl + "/api/product/list");
             if (response.data.success) {
-                setProducts(response.data.products)
-            }else{
+            
+                const normalized = response.data.products.map((p) => ({
+                    ...p,
+                    image: p.images,
+                }));
+                setProducts(normalized)
+            } else {
                 toast.error(response.data.message)
             }
         } catch (error) {
-
+            console.error("Error fetching products:", error)
+            toast.error("Failed to fetch products. Please try again later.")
         }
     }
 
@@ -105,7 +112,7 @@ const ShopcontextProvider = (props) => {
         search, setSearch, showSearch, setShowSearch,
         cartItems, addToCart,
         getCartCount, updateQuantity, getCartAmount,
-        navigate, backendUrl
+        navigate, backendUrl, setToken, token
 
     }
 
