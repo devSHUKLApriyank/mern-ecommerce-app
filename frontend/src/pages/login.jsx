@@ -1,11 +1,12 @@
-import React, { useState,useContext } from 'react'
+import React, { useState,useContext , useEffect } from 'react'
 import axios from 'axios';
-import { Shopcontext } from '../context/shopcontext';
+import { Shopcontext } from '../context/Shopcontext';
+import { toast } from 'react-toastify';
 
 const login = () => {
 
   const [currentState, setCurrentState] = useState('Sign Up');
-  const {token, setToken, navigate,backendUrl} = useContext(Shopcontext);
+  const {token, setToken, navigate, backendUrl} = useContext(Shopcontext);
 
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -41,9 +42,15 @@ const login = () => {
 
     }catch(error){
       console.log(error);
-      toast.error(error);
+      toast.error(error.response?.data?.message || error.message);
     }
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [token]);
 
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-black'>

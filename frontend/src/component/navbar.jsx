@@ -7,7 +7,14 @@ const navbar = () => {
 
   const [visible, setVisible] = React.useState(false);
 
-  const {setShowSearch , getCartCount} = useContext(Shopcontext);
+  const {setShowSearch , getCartCount, navigate, token, setToken, setCartItems} = useContext(Shopcontext);
+
+  const logout =() =>{
+    navigate('/login')
+    localStorage.removeItem('token');
+    setToken('');
+    setCartItems({})
+  }
 
   return (
     <div className='flex items-center justify-between py-5 front-medium'>
@@ -46,7 +53,7 @@ const navbar = () => {
             <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded'>
               <p className = 'cursor-pointer hover:text-black'>My Profile</p>
               <p className = 'cursor-pointer hover:text-black'>My Orders</p>
-              <p className = 'cursor-pointer hover:text-black'>Logout</p>
+              <p onClick={logout} className = 'cursor-pointer hover:text-black'>Logout</p>
             </div>
           </div>
         </div>
