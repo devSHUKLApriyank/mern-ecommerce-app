@@ -6,10 +6,10 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Product from './pages/Product'
 import Cart from './pages/Cart'
-import Login from './pages/Login'
+import Login from './pages/login'
 import PlaceOrder from './pages/PlaceOrder'
 import Orders from './pages/Order'
-import Navbar from './component/Navbar'
+import Navbar from './component/navbar'
 import Footer from './component/footer'
 import SearchBar from './component/SearchBar'
 import order from './pages/Order'
@@ -31,7 +31,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/place-order" element={<PlaceOrder />} />
-        <Route path="/order" element={<Orders />} />
+        <Route path="/orders" element={<Orders />} />
       </Routes>
       <Footer/>
     </div>

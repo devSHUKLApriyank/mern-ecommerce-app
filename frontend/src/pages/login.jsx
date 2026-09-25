@@ -1,11 +1,11 @@
-import React, { useState,useContext , useEffect } from 'react'
+import React, { useState, useContext , useEffect } from 'react'
 import axios from 'axios';
 import { Shopcontext } from '../context/Shopcontext';
 import { toast } from 'react-toastify';
 
 const login = () => {
 
-  const [currentState, setCurrentState] = useState('Sign Up');
+  const [currentState, setCurrentState] = useState('Login');
   const {token, setToken, navigate, backendUrl} = useContext(Shopcontext);
 
   const [name, setName] = useState('');
